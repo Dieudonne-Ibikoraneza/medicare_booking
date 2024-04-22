@@ -6,8 +6,8 @@ export default {
       colors: {
         primaryColor: "#0067FF",
         yellowColor: "#FEB60D",
-        purpleCOlor: "#9771FF",
-        irisBlueCOlor: "#01B5C5",
+        purpleColor: "#9771FF",
+        irisBlueColor: "#01B5C5",
         headingColor: "#181A1E",
         textColor: "#4E545F",
       },
