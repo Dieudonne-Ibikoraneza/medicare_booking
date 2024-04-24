@@ -37,7 +37,7 @@
 
 @media only screen and (max-width: 768px) {
   .heading {
-    @apply text-[26px] ledaing-[36px];
+    @apply text-[26px] leading-[36px];
   }
 
   .text__para {
