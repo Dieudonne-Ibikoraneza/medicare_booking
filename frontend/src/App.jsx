@@ -1,12 +1,11 @@
-import './App.css';
-import Layout from './layout/Layout';
-function App() {
+import "./app.css";
 
+function App() {
   return (
     <>
-      <Layout />
+      <h1 className="text-[20px] text-blue-600">Hello react + vite app</h1>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
