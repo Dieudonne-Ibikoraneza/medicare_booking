@@ -5,8 +5,9 @@ import heroImg03 from "../assets/images/hero-img03.png";
 import icon01 from "../assets/images/icon01.png";
 import { Link } from "react-router-dom";
 import { BsArrowRight } from "react-icons/bs";
-import icon02 from "../assets/images/icon02.png"
-import icon03 from "../assets/images/icon03.png"
+import icon02 from "../assets/images/icon02.png";
+import icon03 from "../assets/images/icon03.png";
+import About from "../components/About/About";
 
 const Home = () => {
   return (
@@ -45,7 +46,7 @@ const Home = () => {
                   <h2 className="text-[36px] leading-[56px] lg:text-[44px] lg:leading-[54px] font-[700] text-headingColor">
                     15+
                   </h2>
-                  <span className="w-[100px] h-2 bg-yellowColor rounded-full block mt-[-14px]"></span>
+                  <span className="w-[100px] h-2 bg-purpleColor rounded-full block mt-[-14px]"></span>
 
                   <p className="text__para">Clinic Location</p>
                 </div>
@@ -53,7 +54,7 @@ const Home = () => {
                   <h2 className="text-[36px] leading-[56px] lg:text-[44px] lg:leading-[54px] font-[700] text-headingColor">
                     100%
                   </h2>
-                  <span className="w-[100px] h-2 bg-yellowColor rounded-full block mt-[-14px]"></span>
+                  <span className="w-[100px] h-2 bg-irisBlueColor rounded-full block mt-[-14px]"></span>
 
                   <p className="text__para">Patient Satisfaction</p>
                 </div>
@@ -90,8 +91,6 @@ const Home = () => {
           {/* <div className="flex flex-wrap items-center justify-between flex-col md:flex-row gap-5 lg:gap-[30px] mt-[30px] lg:mt-[55px] "></div> */}
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-[30px] mt-[30px] lg:mt-[55px]">
-            
-            
             <div className="py-[30px] px-5">
               <div className="flex items-center justify-center">
                 <img src={icon01} alt="" />
@@ -110,7 +109,7 @@ const Home = () => {
                   to="/doctors"
                   className="w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor"
                 >
-                  <BsArrowRight className="group-hover:text-white"  />
+                  <BsArrowRight className="group-hover:text-white" />
                 </Link>
               </div>
             </div>
@@ -133,7 +132,7 @@ const Home = () => {
                   to="/doctors"
                   className="w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor"
                 >
-                  <BsArrowRight className="group-hover:text-white"  />
+                  <BsArrowRight className="group-hover:text-white" />
                 </Link>
               </div>
             </div>
@@ -156,7 +155,7 @@ const Home = () => {
                   to="/doctors"
                   className="w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor"
                 >
-                  <BsArrowRight className="group-hover:text-white"  />
+                  <BsArrowRight className="group-hover:text-white" />
                 </Link>
               </div>
             </div>
@@ -164,6 +163,7 @@ const Home = () => {
         </div>
       </section>
 
+      <About />
     </>
   );
 };
