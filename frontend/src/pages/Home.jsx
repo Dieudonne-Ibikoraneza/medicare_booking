@@ -271,7 +271,17 @@ const Home = () => {
 
       {/*  Our great doctors end */}
 
-      
+      {/* faq section */}
+      <section>
+        <div className="container">
+          <div className="flex justify-between gap-[50px] lg:Gap-0">
+            <div className="w-1/2 hidden md:block">
+              <img src={faqImg} alt="" />
+            </div>
+          </div>
+        </div>
+        </section>
+      {/* faq section end */}
     </>
   );
 };
