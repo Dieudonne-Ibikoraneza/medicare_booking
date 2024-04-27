@@ -6,6 +6,7 @@ import icon01 from "../assets/images/icon01.png";
 import featureImg from "../assets/images/feature-img.png";
 import videoIcon from "../assets/images/video-icon.png";
 import avatarIcon from "../assets/images/avatar-icon.png";
+import faqImg from "../assets/images/faq-img.png"
 import { Link } from "react-router-dom";
 import { BsArrowRight } from "react-icons/bs";
 import icon02 from "../assets/images/icon02.png";
@@ -269,6 +270,8 @@ const Home = () => {
       </section>
 
       {/*  Our great doctors end */}
+
+      
     </>
   );
 };

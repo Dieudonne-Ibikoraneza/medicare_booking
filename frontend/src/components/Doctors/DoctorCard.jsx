@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
 import starIcon from "../../assets/images/Star.png";
-import Link from "react-router-dom"
+import {Link} from "react-router-dom"
 import { BsArrowRight } from "react-icons/bs";
 
 const DoctorCard = ({ doctor }) => {
@@ -47,7 +47,7 @@ const DoctorCard = ({ doctor }) => {
               </div>
 
               <Link to='/doctors/1'
-              className='w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none'
+              className='w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] flex items-center justify-center group hover:bg-primaryColor hover:border-none'
               >
                   <BsArrowRight className="group-hover:text-white w-6 h-5" />
               </Link>
