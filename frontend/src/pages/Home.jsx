@@ -289,6 +289,7 @@ const Home = () => {
         </div>
         </section>
       {/* faq section end */}
+
     </>
   );
 };
