@@ -4,6 +4,7 @@ import doctorImg from "../../assets/images/doctor-img02.png";
 import starIcon from "../../assets/images/Star.png";
 import DoctorAbout from "./DoctorAbout";
 import FeedBack from "./FeedBack";
+import SidePanel from "./SidePanel";
 
 const DoctorDetails = () => {
   const [tab, setTab] = useState("about");
@@ -40,7 +41,7 @@ const DoctorDetails = () => {
               </div>
             </div>
 
-            <div className="mt-[50px] border-b border-solid border-[#0066FF43]">
+            <div className="mt-[50px] mb-[20px] border-b border-solid border-[#0066FF43]">
               <button
                 onClick={() => setTab("about")}
                 className={`${
@@ -64,6 +65,10 @@ const DoctorDetails = () => {
               {tab === "about" && <DoctorAbout />}
               {tab === "feedback" && <FeedBack />}
             </div>
+          </div>
+
+          <div>
+            <SidePanel />
           </div>
         </div>
       </div>
