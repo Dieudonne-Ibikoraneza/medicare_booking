@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import { services } from "../../assets/data/services.js";
 import ServiceCard from "./ServiceCard";
