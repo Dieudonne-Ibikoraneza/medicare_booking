@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -43,10 +43,24 @@ const Login = () => {
             />
           </div>
           <div className="mt-7">
-            <button type="button" className="w-full bg-primaryColor px-4 py-3 text-white rounded-lg leading-[30px]">Login</button>
+            <button
+              type="button"
+              className="w-full bg-primaryColor px-4 py-3 text-white rounded-lg leading-[30px]"
+            >
+              Login
+            </button>
           </div>
-          <p className="text-textColor text-center mt-5">Don&apos;t have an account? 
-          <span><Link to='/register' className="text-primaryColor font-medium ml-1">Register</Link></span></p>
+          <p className="text-textColor text-center mt-5">
+            Don&apos;t have an account?
+            <span>
+              <Link
+                to="/register"
+                className="text-primaryColor font-medium ml-1"
+              >
+                Register
+              </Link>
+            </span>
+          </p>
         </form>
       </div>
     </section>
