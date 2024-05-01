@@ -49,7 +49,7 @@ export const register = async (req, res) => {
     if (role === "doctor") {
       user = new Doctor({
         name,
-        emaail,
+        email,
         password: hashPassword,
         photo,
         gender,
