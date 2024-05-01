@@ -24,16 +24,11 @@ export const deleteUser = async (req, res) => {
   const id = req.params.id;
 
   try {
-    const updatedUser = await User.findByIdAndDelete(
-      id,
-      { $set: req.body },
-      { new: true }
-    );
+    await User.findByIdAndDelete(id);
 
     res.status(200).json({
       success: true,
       message: "Successfully deleted",
-      data: updatedUser,
     });
   } catch (err) {
     res.status(500).json({ success: false, message: "Failed to delete" });
@@ -44,11 +39,7 @@ export const getSingleUser = async (req, res) => {
   const id = req.params.id;
 
   try {
-    const updatedUser = await User.findById(
-      id,
-      { $set: req.body },
-      { new: true }
-    );
+    const user = await User.findById(id).select("-password");
 
     res.status(200).json({
       success: true,
@@ -62,12 +53,12 @@ export const getSingleUser = async (req, res) => {
 
 export const getAllUser = async (req, res) => {
   try {
-    const updatedUser = await User.find({});
+    const users = await User.find({}).select("-password");
 
     res.status(200).json({
       success: true,
       message: "Users found",
-      data: user,
+      data: users,
     });
   } catch (err) {
     res.status(404).json({ success: false, message: "Not found" });
