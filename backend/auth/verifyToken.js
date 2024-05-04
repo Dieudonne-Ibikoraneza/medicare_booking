@@ -6,7 +6,7 @@ export const authenticate = (req, res, next) => {
   //get token from headers
   const authToken = req.headers.authorization;
 
-  // check token is exists
+  // check if token exists
   if (!authToken || !authToken.startsWith("Bearer")) {
     return res
       .status(401)
@@ -34,23 +34,39 @@ export const authenticate = (req, res, next) => {
 export const restrict = (roles) => async (req, res, next) => {
   const userId = req.userId;
 
-  let user;
+  try {
+    let user;
 
-  const patient = await User.findById(userId);
-  const doctor = await User.findById(userId);
+    const patient = await User.findById(userId);
+    const doctor = await Doctor.findById(userId);
 
-  if (patient) {
-    user = patient;
-  }
-  if (doctor) {
-    user = doctor;
-  }
+    if (patient) {
+      user = patient;
+    } else if (doctor) {
+      user = doctor;
+    } else {
+      return res
+        .status(404)
+        .json({ success: false, message: "User not found" });
+    }
 
-  if (!roles.includes(user.role)) {
+    if (!user.role) {
+      return res
+        .status(500)
+        .json({ success: false, message: "Role not defined for the user" });
+    }
+
+    if (!roles.includes(user.role)) {
+      return res
+        .status(401)
+        .json({ success: false, message: "You are not authorized" });
+    }
+
+    next();
+  } catch (error) {
+    console.error("Error in restrict middleware:", error);
     return res
-      .status(401)
-      .json({ success: false, message: "You are not authorized" });
+      .status(500)
+      .json({ success: false, message: "Internal server error" });
   }
-
-  next();
 };
