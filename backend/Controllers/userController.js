@@ -24,7 +24,7 @@ export const deleteUser = async (req, res) => {
   const id = req.params.id;
 
   try {
-    const updatedUser = await User.findByIdAndDelete(id);
+    await User.findByIdAndDelete(id);
 
     res.status(200).json({
       success: true,
@@ -39,7 +39,7 @@ export const getSingleUser = async (req, res) => {
   const id = req.params.id;
 
   try {
-    const updatedUser = await User.findById(
+    const user = await User.findById(
       id,
       { $set: req.body },
       { new: true }
@@ -56,15 +56,14 @@ export const getSingleUser = async (req, res) => {
 };
 
 export const getAllUser = async (req, res) => {
-  const id = req.params.id;
 
   try {
-    const updatedUser = await User.findById({});
+    const users = await User.findById({});
 
     res.status(200).json({
       success: true,
       message: "Users found",
-      data: updatedUser,
+      data: users,
     });
   } catch (err) {
     res.status(404).json({ success: false, message: "No user found" });
