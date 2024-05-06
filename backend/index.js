@@ -4,8 +4,9 @@ import jwt from "jsonwebtoken";
 import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import authRoute from './Routes/auth.js'
-import userRoute from './Routes/user.js'
+import authRoute from "./Routes/auth.js";
+import userRoute from "./Routes/user.js";
+import doctorRoute from "./Routes/doctor.js";
 
 dotenv.config();
 const app = express();
@@ -37,8 +38,9 @@ app.get("/", (req, res) => {
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors(corsOptions));
-app.use('/api/v1/auth', authRoute)
-app.use('/api/v1/users', userRoute)
+app.use("/api/v1/auth", authRoute);
+app.use("/api/v1/users", userRoute);
+app.use("/api/v1/doctors", doctorRoute);
 
 app.listen(port, () => {
   connectDB();
