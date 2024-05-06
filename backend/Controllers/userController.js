@@ -40,9 +40,7 @@ export const getSingleUser = async (req, res) => {
 
   try {
     const user = await User.findById(
-      id,
-      { $set: req.body },
-      { new: true }
+      id
     );
 
     res.status(200).json({
