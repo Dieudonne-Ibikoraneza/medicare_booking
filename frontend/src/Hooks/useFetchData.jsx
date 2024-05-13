@@ -40,3 +40,5 @@ const useFetchData = (url) => {
 
   return { data, loading, error}
 }
+
+export default useFetchData
