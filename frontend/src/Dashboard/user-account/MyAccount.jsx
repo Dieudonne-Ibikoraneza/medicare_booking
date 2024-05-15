@@ -6,6 +6,7 @@ import Profile from "./Profile";
 import useGetProfile from "../../hooks/useFetchData";
 import { BASE_URL } from "../../config";
 import Loading from "../../components/loader/Loading";
+import Error from "../../components/Error/Error";
 
 const MyAccount = () => {
   const { dispatch } = useContext(authContext);
@@ -25,9 +26,9 @@ const MyAccount = () => {
     <section>
       <div className="max-1-[1170x] px-5 mx-auto">
         
-        { loading && <Loading />}
+        { loading  &&!error && <Loading />}
 
-        { error && <Error />}
+        { error && !loading && <Error errMessage={error} />}
 
         {!loading && !error && (
           <div className="grid md:grid-cols-3 gap-10">
