@@ -84,7 +84,7 @@ export const getUserProfile = async (req, res) => {
     res.status(200).json({
       success: true,
       message: "Profile info is getting",
-      dat: { ...rest },
+      data: { ...rest },
     });
   } catch (err) {
     return res
