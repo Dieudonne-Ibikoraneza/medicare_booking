@@ -12,11 +12,13 @@ const MyAccount = () => {
   const { dispatch } = useContext(authContext);
   const [tab, setTab] = useState("bookings");
 
-  const { data, loading, error } = useGetProfile(
-    `${BASE_URL}/users/profile/me`
-  );
+  const {
+    data: user,
+    loading,
+    error,
+  } = useGetProfile(`${BASE_URL}/users/profile/me`);
 
-  console.log(data, "userdata");
+  console.log(user, "userdata");
 
   const handleLogout = () => {
     dispatch({ type: "LOGOUT" });
@@ -25,10 +27,9 @@ const MyAccount = () => {
   return (
     <section>
       <div className="max-1-[1170x] px-5 mx-auto">
-        
-        { loading  &&!error && <Loading />}
+        {loading && !error && <Loading />}
 
-        { error && !loading && <Error errMessage={error} />}
+        {error && !loading && <Error errMessage={error} />}
 
         {!loading && !error && (
           <div className="grid md:grid-cols-3 gap-10">
@@ -93,7 +94,7 @@ const MyAccount = () => {
               </div>
 
               {tab === "bookings" && <MyBookings />}
-              {tab === "settings" && <Profile />}
+              {tab === "settings" && <Profile userData={user} />}
             </div>
           </div>
         )}

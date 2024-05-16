@@ -22,7 +22,7 @@ const MyBookings = () => {
             <DoctorCard doctor={doctor} key={doctor._id} />
           ))}
         </div>
-      )}
+      )} 
 
       {!loading && !error && appointments.length === 0 && (
         <h2 className="mt-5 text-center text-primaryColor leading-7 text-[20px] font-semibold">
