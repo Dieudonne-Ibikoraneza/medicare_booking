@@ -13,12 +13,12 @@ const MyAccount = () => {
   const [tab, setTab] = useState("bookings");
 
   const {
-    data: user,
+    data: userData,
     loading,
     error,
   } = useGetProfile(`${BASE_URL}/users/profile/me`);
 
-  console.log(user, "userdata");
+  console.log(userData, "userdata");
 
   const handleLogout = () => {
     dispatch({ type: "LOGOUT" });
@@ -94,7 +94,7 @@ const MyAccount = () => {
               </div>
 
               {tab === "bookings" && <MyBookings />}
-              {tab === "settings" && <Profile userData={user} />}
+              {tab === "settings" && <Profile user={userData} />}
             </div>
           </div>
         )}

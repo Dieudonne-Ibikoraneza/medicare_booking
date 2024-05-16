@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import uploadImageToCloudinary from "../../utils/uploadCloudinary";
-import { BASE_URL, token } from "../../config.js";
+import { token, BASE_URL } from "../../config.js";
 import { toast } from "react-toastify";
 import HashLoader from "react-spinners/HashLoader";
 
@@ -23,18 +23,15 @@ const Profile = ({ user }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user) {
-      setFormData({
-        name: user.name,
-        email: user.email,
-        photo: user.photo,
-        gender: user.gender,
-        bloodType: user.bloodType,
-      });
-    }
+    setFormData({
+      name: user.name,
+      email: user.email,
+      password: "",
+      photo: user.photo,
+      gender: user.gender,
+      bloodType: user.bloodType,
+    });
   }, [user]);
-  
-  
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -58,7 +55,7 @@ const Profile = ({ user }) => {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(formData),
       });
@@ -112,7 +109,6 @@ const Profile = ({ user }) => {
             onChange={handleInputChange}
             placeholder="Password"
             className="w-full px-4 pr-4 py-3 border-b border-solid border-[#0066FF34] focus:outline-none focus:border-b-primaryColor text-[16px] leading-7 text-headingColor placeholder:text-textColor rounded-md cursor-pointer"
-          
           />
         </div>
         <div className="mb-5">
@@ -133,7 +129,7 @@ const Profile = ({ user }) => {
               value={formData.gender}
               onChange={handleInputChange}
               name="gender"
-              className="text-textColor font-semibold ml-2 text-[15px] leading-7 px-4 py-3 focus:outline-none"
+              className="text-textColor font-semibold text-[15px] leading-7 px-4 py-3 focus:outline-none"
             >
               <option value="">Select</option>
               <option value="male">Male</option>
