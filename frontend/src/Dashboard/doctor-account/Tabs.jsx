@@ -1,6 +1,18 @@
+import { authContext } from "../../Context/AuthContext";
 import { BiMenu } from "react-icons/bi";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Tabs = ({ tab, setTab }) => {
+  const { dispatch } = useContext(authContext);
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch({ type: "LOGOUT" });
+    navigate("/");
+  };
+
   return (
     <div>
       <span className="lg:hidden">
@@ -38,7 +50,10 @@ const Tabs = ({ tab, setTab }) => {
           Profile
         </button>
         <div className="w-full mt-[100px]">
-          <button className="w-full bg-[#181A1E] text-white leading-7 p-3 text-[16px] rounded-md">
+          <button
+            className="w-full bg-[#181A1E] text-white leading-7 p-3 text-[16px] rounded-md"
+            onClick={handleLogout}
+          >
             Logout
           </button>
           <button className="w-full bg-red-600 mt-4 text-white leading-7 p-3 text-[16px] rounded-md">

@@ -23,7 +23,7 @@ const Dashboard = () => {
             <div className="grid lg:grid-cols-3 gap-[30px] lg:gap-[50px]">
               <Tabs tab={tab} setTab={setTab} />
             </div>
-          ) //finished on 4:31
+          )
         }
       </div>
     </section>
