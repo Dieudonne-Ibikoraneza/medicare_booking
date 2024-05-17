@@ -2,7 +2,7 @@
 import React from "react";
 import { formateDate } from "../../utils/formateDate";
 
-const DoctorAbout = () => {
+const DoctorAbout = ({ name, about, qualifications, experiences }) => {
   return (
     <div>
       <div>
