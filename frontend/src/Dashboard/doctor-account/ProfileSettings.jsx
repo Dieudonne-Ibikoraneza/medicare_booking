@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AiOutlineDelete } from 'react-icons/ai'
+import { AiOutlineDelete } from "react-icons/ai";
 
 const ProfileSettings = () => {
   const [FormData, setFormData] = useState({
@@ -12,7 +12,9 @@ const ProfileSettings = () => {
     qualifications: [
       { startingDate: "", endingDate: "", degree: "", university: "" },
     ],
-    experiences: [],
+    experiences: [
+      { startingDate: "", endingDate: "", position: "", experiences: "" },
+    ],
     timeSlots: [],
   });
 
@@ -167,15 +169,119 @@ const ProfileSettings = () => {
                   </div>
                 </div>
 
-                <button className="bg-red-600 p-2 rounded-full text-white text-[18px] mt-2 mb-[30px] cursor-pointer"><AiOutlineDelete /></button>
-
+                <button className="bg-red-600 p-2 rounded-full text-white text-[18px] mt-2 mb-[30px] cursor-pointer">
+                  <AiOutlineDelete />
+                </button>
               </div>
             </div>
           ))}
 
+          <button className="bg-[#000] py-2 px-5 rounded text-white h-fit cursor-pointer">
+            Add Qualification
+          </button>
+        </div>
 
-          <button className="bg-[#000] py-2 px-5 rounded text-white h-fit cursor-pointer">Add Qualification</button>
+        <div className="mb-5">
+          <p className="form__label">Experiences*</p>
+          {FormData.experiences?.map((item, index) => (
+            <div key={index}>
+              <div>
+                <div className="grid grid-cols-2 gap-5">
+                  <div>
+                    <p className="form__label">Starting Date*</p>
+                    <input
+                      type="date"
+                      name="startingDate"
+                      value={item.startingDate}
+                      className="form__input"
+                    />
+                  </div>
 
+                  <div>
+                    <p className="form__label">Ending Date*</p>
+                    <input
+                      type="date"
+                      name="endingDate"
+                      value={item.endingDate}
+                      className="form__input"
+                    />
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-5 mt-5">
+                  <div>
+                    <p className="form__label">Position*</p>
+                    <input
+                      type="text"
+                      name="position"
+                      value={item.position}
+                      className="form__input"
+                    />
+                  </div>
+
+                  <div>
+                    <p className="form__label">Hospital*</p>
+                    <input
+                      type="text"
+                      name="hospital"
+                      value={item.hospital}
+                      className="form__input"
+                    />
+                  </div>
+                </div>
+
+                <button className="bg-red-600 p-2 rounded-full text-white text-[18px] mt-2 mb-[30px] cursor-pointer">
+                  <AiOutlineDelete />
+                </button>
+              </div>
+            </div>
+          ))}
+
+          <button className="bg-[#000] py-2 px-5 rounded text-white h-fit cursor-pointer">
+            Add Experience
+          </button>
+        </div>
+
+        <div className="mb-5">
+          <p className="form__label">Time Slots*</p>
+          {FormData.timeSlots?.map((item, index) => (
+            <div key={index}>
+              <div>
+                <div className="grid grid-cols-2 md:grid-cols-4 mb-[30px] gap-5">
+                  <div>
+                    <p className="form__label">Day*</p>
+                    <select name="day" value={item.day} className="form__input py-3.5 ">
+                      <option value="">Select</option>
+                      <option value="saturday">Saturday</option>
+                      <option value="sunday">Sunday</option>
+                      <option value="monday">Monday</option>
+                      <option value="tuesday">Tuesday</option>
+                      <option value="wednesday">Wednesday</option>
+                      <option value="thursday">Thursday</option>
+                      <option value="friday">Friday</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <p className="form__label">Ending Date*</p>
+                    <input
+                      type="date"
+                      name="endingDate"
+                      value={item.endingDate}
+                      className="form__input"
+                    />
+                  </div>
+                </div>
+
+                <button className="bg-red-600 p-2 rounded-full text-white text-[18px] mt-2 mb-[30px] cursor-pointer">
+                  <AiOutlineDelete />
+                </button>
+              </div>
+            </div>
+          ))}
+
+          <button className="bg-[#000] py-2 px-5 rounded text-white h-fit cursor-pointer">
+            Add Experience
+          </button>
         </div>
       </form>
     </div>
