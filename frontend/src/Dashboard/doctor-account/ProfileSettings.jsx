@@ -15,7 +15,9 @@ const ProfileSettings = () => {
     experiences: [
       { startingDate: "", endingDate: "", position: "", experiences: "" },
     ],
-    timeSlots: [],
+    timeSlots: [
+      { day: "", startingTime: "", endingTime: "" },
+    ],
   });
 
   const handleInputChange = (e) => {
@@ -249,7 +251,11 @@ const ProfileSettings = () => {
                 <div className="grid grid-cols-2 md:grid-cols-4 mb-[30px] gap-5">
                   <div>
                     <p className="form__label">Day*</p>
-                    <select name="day" value={item.day} className="form__input py-3.5 ">
+                    <select
+                      name="day"
+                      value={item.day}
+                      className="form__input py-3.5"
+                    >
                       <option value="">Select</option>
                       <option value="saturday">Saturday</option>
                       <option value="sunday">Sunday</option>
@@ -262,25 +268,35 @@ const ProfileSettings = () => {
                   </div>
 
                   <div>
-                    <p className="form__label">Ending Date*</p>
+                    <p className="form__label">Starting Time*</p>
                     <input
-                      type="date"
-                      name="endingDate"
-                      value={item.endingDate}
+                      type="time"
+                      name="startingTime"
+                      value={item.startingTime}
                       className="form__input"
                     />
                   </div>
+                  <div>
+                    <p className="form__label">Ending Time*</p>
+                    <input
+                      type="time"
+                      name="endingTime"
+                      value={item.endingTime}
+                      className="form__input"
+                    />
+                  </div>
+                  <div className="flex items-center">
+                    <button className="bg-red-600 p-2 rounded-full text-white text-[18px] mt-2 mb-[30px] cursor-pointer">
+                      <AiOutlineDelete />
+                    </button>
+                  </div>
                 </div>
-
-                <button className="bg-red-600 p-2 rounded-full text-white text-[18px] mt-2 mb-[30px] cursor-pointer">
-                  <AiOutlineDelete />
-                </button>
               </div>
             </div>
           ))}
 
           <button className="bg-[#000] py-2 px-5 rounded text-white h-fit cursor-pointer">
-            Add Experience
+            Add TimeSlot
           </button>
         </div>
       </form>
