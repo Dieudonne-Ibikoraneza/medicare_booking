@@ -15,9 +15,8 @@ const ProfileSettings = () => {
     experiences: [
       { startingDate: "", endingDate: "", position: "", experiences: "" },
     ],
-    timeSlots: [
-      { day: "", startingTime: "", endingTime: "" },
-    ],
+    timeSlots: [{ day: "", startingTime: "", endingTime: "" }],
+    about: "",
   });
 
   const handleInputChange = (e) => {
@@ -286,7 +285,7 @@ const ProfileSettings = () => {
                     />
                   </div>
                   <div className="flex items-center">
-                    <button className="bg-red-600 p-2 rounded-full text-white text-[18px] mt-2 mb-[30px] cursor-pointer">
+                    <button className="bg-red-600 p-2 rounded-full text-white text-[18px] cursor-pointer mt-6">
                       <AiOutlineDelete />
                     </button>
                   </div>
@@ -298,6 +297,18 @@ const ProfileSettings = () => {
           <button className="bg-[#000] py-2 px-5 rounded text-white h-fit cursor-pointer">
             Add TimeSlot
           </button>
+        </div>
+
+        <div className="mb-5">
+          <p className="form__label">About*</p>
+          <textarea
+            name="about"
+            rows={5}
+            value={FormData.about}
+            placeholder="Write about you"
+            onChange={handleInputChange}
+            className="form__input"
+          ></textarea>
         </div>
       </form>
     </div>
