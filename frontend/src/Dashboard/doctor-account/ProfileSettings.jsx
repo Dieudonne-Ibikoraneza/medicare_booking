@@ -17,11 +17,16 @@ const ProfileSettings = () => {
     ],
     timeSlots: [{ day: "", startingTime: "", endingTime: "" }],
     about: "",
+    photo: null
   });
 
   const handleInputChange = (e) => {
     setFormData({ ...FormData, [e.target.name]: e.target.value });
   };
+
+  const handleFileInputChange = () => {
+
+  }
 
   return (
     <div>
@@ -309,6 +314,36 @@ const ProfileSettings = () => {
             onChange={handleInputChange}
             className="form__input"
           ></textarea>
+        </div>
+
+        <div className="mb-5 items-center gap-3">
+          {FormData.photo && (
+            <figure className="w-[60px] h-[60px] rounded-full border-2 border-solid border-primaryColor flex items-center justify-center">
+              <img src={FormData.photo} className="w-full rounded-full" alt="" />
+            </figure>
+          )}
+
+          <div className="relative w-[130px] h-[50px]">
+            <input
+              type="file"
+              name="photo"
+              onChange={handleFileInputChange}
+              id="customFile"
+              accept=".jpg, .png"
+              className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
+            />
+
+            <label
+              htmlFor="customFile"
+              className="absolute top-0 left-0 w-full h-full flex items-center px-[0.75rem] py-[0.375rem] text-[15px] leading-6 overflow-hidden bg-[#0066FF34] text-headingColor font-semibold rounded-lg truncate cursor-pointer"
+            >
+              Upload Photo
+            </label>
+          </div>
+        </div>
+
+        <div className="mt-7">
+          <button type="submit" onClick={updateProfileHandler} className="bg-primaryColor leading-[30px] text-white text-[18px] w-full py-3 px-4 rounded-lg">Update Profile</button>
         </div>
       </form>
     </div>
