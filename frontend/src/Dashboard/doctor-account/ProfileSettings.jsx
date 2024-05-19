@@ -9,12 +9,8 @@ const ProfileSettings = () => {
     gender: "",
     specialization: "",
     ticketPrice: 0,
-    qualifications: [
-      { startingDate: "", endingDate: "", degree: "", university: "" },
-    ],
-    experiences: [
-      { startingDate: "", endingDate: "", position: "", experiences: "" },
-    ],
+    qualifications: [],
+    experiences: [],
     timeSlots: [{ day: "", startingTime: "", endingTime: "" }],
     about: "",
     photo: null,
@@ -57,8 +53,11 @@ const ProfileSettings = () => {
 
   //reusable function for deleting the item
   const deleteItem = (key, index) => {
-    setFormData(prevFormData => ({...prevFormData, [key]: prevFormData[key].filter((_, i) => i !== index)}))
-  }
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [key]: prevFormData[key].filter((_, i) => i !== index),
+    }));
+  };
 
   const addQualification = (e) => {
     e.preventDefault();
@@ -66,8 +65,8 @@ const ProfileSettings = () => {
     addItem("qualifications", {
       startingDate: "",
       endingDate: "",
-      degree: "",
-      university: "",
+      degree: "PhD",
+      university: "Univesity of Rwanda",
     });
   };
 
@@ -78,8 +77,29 @@ const ProfileSettings = () => {
   const deleteQualification = (e, index) => {
     e.preventDefault();
 
-    deleteItem('qualifications', index)
-  }
+    deleteItem("qualifications", index);
+  };
+
+  const addExperience = (e) => {
+    e.preventDefault();
+
+    addItem("experiences", {
+      startingDate: "",
+      endingDate: "",
+      position: "Senior Surgeon",
+      hospital: "CHUK",
+    });
+  };
+
+  const handleExperienceChange = (event, index) => {
+    handleReusableInputChangeFunc("experiences", index, event);
+  };
+
+  const deleteExperience = (e, index) => {
+    e.preventDefault();
+
+    deleteItem("experiences", index);
+  };
 
   return (
     <div>
@@ -232,7 +252,10 @@ const ProfileSettings = () => {
                   </div>
                 </div>
 
-                <button onClick={e => deleteQualification(e, index)} className="bg-red-600 p-2 rounded-full text-white text-[18px] mt-2 mb-[30px] cursor-pointer">
+                <button
+                  onClick={(e) => deleteQualification(e, index)}
+                  className="bg-red-600 p-2 rounded-full text-white text-[18px] mt-2 mb-[30px] cursor-pointer"
+                >
                   <AiOutlineDelete />
                 </button>
               </div>
@@ -260,6 +283,7 @@ const ProfileSettings = () => {
                       name="startingDate"
                       value={item.startingDate}
                       className="form__input"
+                      onChange={(e) => handleExperienceChange(e, index)}
                     />
                   </div>
 
@@ -270,6 +294,7 @@ const ProfileSettings = () => {
                       name="endingDate"
                       value={item.endingDate}
                       className="form__input"
+                      onChange={(e) => handleExperienceChange(e, index)}
                     />
                   </div>
                 </div>
@@ -281,6 +306,7 @@ const ProfileSettings = () => {
                       name="position"
                       value={item.position}
                       className="form__input"
+                      onChange={(e) => handleExperienceChange(e, index)}
                     />
                   </div>
 
@@ -291,18 +317,25 @@ const ProfileSettings = () => {
                       name="hospital"
                       value={item.hospital}
                       className="form__input"
+                      onChange={(e) => handleExperienceChange(e, index)}
                     />
                   </div>
                 </div>
 
-                <button className="bg-red-600 p-2 rounded-full text-white text-[18px] mt-2 mb-[30px] cursor-pointer">
+                <button
+                  onClick={(e) => deleteExperience(e, index)}
+                  className="bg-red-600 p-2 rounded-full text-white text-[18px] mt-2 mb-[30px] cursor-pointer"
+                >
                   <AiOutlineDelete />
                 </button>
               </div>
             </div>
           ))}
 
-          <button className="bg-[#000] py-2 px-5 rounded text-white h-fit cursor-pointer">
+          <button
+            onClick={addExperience}
+            className="bg-[#000] py-2 px-5 rounded text-white h-fit cursor-pointer"
+          >
             Add Experience
           </button>
         </div>
