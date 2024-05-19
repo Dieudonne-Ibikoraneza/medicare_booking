@@ -13,20 +13,40 @@ const ProfileSettings = () => {
       { startingDate: "", endingDate: "", degree: "", university: "" },
     ],
     experiences: [
-      { startingDate: "", endingDate: "", position: "", experiences: "" },
+      { startingDate: "", endingDate: "", position: "", hospital: "" },
     ],
     timeSlots: [{ day: "", startingTime: "", endingTime: "" }],
     about: "",
-    photo: null
+    photo: null,
   });
 
   const handleInputChange = (e) => {
     setFormData({ ...FormData, [e.target.name]: e.target.value });
   };
 
-  const handleFileInputChange = () => {
+  const handleFileInputChange = () => {};
 
-  }
+  const updateProfileHandler = async (e) => {
+    e.preventDefault();
+  };
+
+  //reusable function for adding item
+  const addItem = (key, item) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [key]: [...prevFormData[key], item],
+    }));
+  };
+
+  const addQualification = (e) => {
+    e.preventDefault();
+    addItem("qualifications", {
+      startingDate: "",
+      endingDate: "",
+      degree: "",
+      university: "",
+    });
+  };
 
   return (
     <div>
@@ -137,8 +157,16 @@ const ProfileSettings = () => {
                     <p className="form__label">Starting Date*</p>
                     <input
                       type="date"
-                      name="startingDate"
+                      name={`startingDate-${index}`}
                       value={item.startingDate}
+                      onChange={(e) => {
+                        const newQualifications = [...FormData.qualifications];
+                        newQualifications[index].startingDate = e.target.value;
+                        setFormData({
+                          ...FormData,
+                          qualifications: newQualifications,
+                        });
+                      }}
                       className="form__input"
                     />
                   </div>
@@ -147,8 +175,16 @@ const ProfileSettings = () => {
                     <p className="form__label">Ending Date*</p>
                     <input
                       type="date"
-                      name="endingDate"
+                      name={`endingDate-${index}`}
                       value={item.endingDate}
+                      onChange={(e) => {
+                        const newQualifications = [...FormData.qualifications];
+                        newQualifications[index].endingDate = e.target.value;
+                        setFormData({
+                          ...FormData,
+                          qualifications: newQualifications,
+                        });
+                      }}
                       className="form__input"
                     />
                   </div>
@@ -158,8 +194,16 @@ const ProfileSettings = () => {
                     <p className="form__label">Degree*</p>
                     <input
                       type="text"
-                      name="degree"
+                      name={`degree-${index}`}
                       value={item.degree}
+                      onChange={(e) => {
+                        const newQualifications = [...FormData.qualifications];
+                        newQualifications[index].degree = e.target.value;
+                        setFormData({
+                          ...FormData,
+                          qualifications: newQualifications,
+                        });
+                      }}
                       className="form__input"
                     />
                   </div>
@@ -168,8 +212,16 @@ const ProfileSettings = () => {
                     <p className="form__label">University*</p>
                     <input
                       type="text"
-                      name="university"
+                      name={`university-${index}`}
                       value={item.university}
+                      onChange={(e) => {
+                        const newQualifications = [...FormData.qualifications];
+                        newQualifications[index].university = e.target.value;
+                        setFormData({
+                          ...FormData,
+                          qualifications: newQualifications,
+                        });
+                      }}
                       className="form__input"
                     />
                   </div>
@@ -182,7 +234,10 @@ const ProfileSettings = () => {
             </div>
           ))}
 
-          <button className="bg-[#000] py-2 px-5 rounded text-white h-fit cursor-pointer">
+          <button
+            onClick={addQualification}
+            className="bg-[#000] py-2 px-5 rounded text-white h-fit cursor-pointer"
+          >
             Add Qualification
           </button>
         </div>
@@ -197,8 +252,16 @@ const ProfileSettings = () => {
                     <p className="form__label">Starting Date*</p>
                     <input
                       type="date"
-                      name="startingDate"
+                      name={`startingDate-${index}`}
                       value={item.startingDate}
+                      onChange={(e) => {
+                        const newExperiences = [...FormData.experiences];
+                        newExperiences[index].startingDate = e.target.value;
+                        setFormData({
+                          ...FormData,
+                          experiences: newExperiences,
+                        });
+                      }}
                       className="form__input"
                     />
                   </div>
@@ -207,8 +270,16 @@ const ProfileSettings = () => {
                     <p className="form__label">Ending Date*</p>
                     <input
                       type="date"
-                      name="endingDate"
+                      name={`endingDate-${index}`}
                       value={item.endingDate}
+                      onChange={(e) => {
+                        const newExperiences = [...FormData.experiences];
+                        newExperiences[index].endingDate = e.target.value;
+                        setFormData({
+                          ...FormData,
+                          experiences: newExperiences,
+                        });
+                      }}
                       className="form__input"
                     />
                   </div>
@@ -218,8 +289,16 @@ const ProfileSettings = () => {
                     <p className="form__label">Position*</p>
                     <input
                       type="text"
-                      name="position"
+                      name={`position-${index}`}
                       value={item.position}
+                      onChange={(e) => {
+                        const newExperiences = [...FormData.experiences];
+                        newExperiences[index].position = e.target.value;
+                        setFormData({
+                          ...FormData,
+                          experiences: newExperiences,
+                        });
+                      }}
                       className="form__input"
                     />
                   </div>
@@ -228,8 +307,16 @@ const ProfileSettings = () => {
                     <p className="form__label">Hospital*</p>
                     <input
                       type="text"
-                      name="hospital"
+                      name={`hospital-${index}`}
                       value={item.hospital}
+                      onChange={(e) => {
+                        const newExperiences = [...FormData.experiences];
+                        newExperiences[index].hospital = e.target.value;
+                        setFormData({
+                          ...FormData,
+                          experiences: newExperiences,
+                        });
+                      }}
                       className="form__input"
                     />
                   </div>
@@ -256,8 +343,16 @@ const ProfileSettings = () => {
                   <div>
                     <p className="form__label">Day*</p>
                     <select
-                      name="day"
+                      name={`day-${index}`}
                       value={item.day}
+                      onChange={(e) => {
+                        const newTimeSlots = [...FormData.timeSlots];
+                        newTimeSlots[index].day = e.target.value;
+                        setFormData({
+                          ...FormData,
+                          timeSlots: newTimeSlots,
+                        });
+                      }}
                       className="form__input py-3.5"
                     >
                       <option value="">Select</option>
@@ -275,8 +370,16 @@ const ProfileSettings = () => {
                     <p className="form__label">Starting Time*</p>
                     <input
                       type="time"
-                      name="startingTime"
+                      name={`startingTime-${index}`}
                       value={item.startingTime}
+                      onChange={(e) => {
+                        const newTimeSlots = [...FormData.timeSlots];
+                        newTimeSlots[index].startingTime = e.target.value;
+                        setFormData({
+                          ...FormData,
+                          timeSlots: newTimeSlots,
+                        });
+                      }}
                       className="form__input"
                     />
                   </div>
@@ -284,8 +387,16 @@ const ProfileSettings = () => {
                     <p className="form__label">Ending Time*</p>
                     <input
                       type="time"
-                      name="endingTime"
+                      name={`endingTime-${index}`}
                       value={item.endingTime}
+                      onChange={(e) => {
+                        const newTimeSlots = [...FormData.timeSlots];
+                        newTimeSlots[index].endingTime = e.target.value;
+                        setFormData({
+                          ...FormData,
+                          timeSlots: newTimeSlots,
+                        });
+                      }}
                       className="form__input"
                     />
                   </div>
@@ -319,7 +430,11 @@ const ProfileSettings = () => {
         <div className="mb-5 items-center gap-3">
           {FormData.photo && (
             <figure className="w-[60px] h-[60px] rounded-full border-2 border-solid border-primaryColor flex items-center justify-center">
-              <img src={FormData.photo} className="w-full rounded-full" alt="" />
+              <img
+                src={FormData.photo}
+                className="w-full rounded-full"
+                alt=""
+              />
             </figure>
           )}
 
@@ -343,7 +458,13 @@ const ProfileSettings = () => {
         </div>
 
         <div className="mt-7">
-          <button type="submit" onClick={updateProfileHandler} className="bg-primaryColor leading-[30px] text-white text-[18px] w-full py-3 px-4 rounded-lg">Update Profile</button>
+          <button
+            type="submit"
+            onClick={updateProfileHandler}
+            className="bg-primaryColor leading-[30px] text-white text-[18px] w-full py-3 px-4 rounded-lg"
+          >
+            Update Profile
+          </button>
         </div>
       </form>
     </div>
