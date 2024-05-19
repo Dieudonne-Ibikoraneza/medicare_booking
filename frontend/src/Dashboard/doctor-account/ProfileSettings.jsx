@@ -55,6 +55,11 @@ const ProfileSettings = () => {
     });
   };
 
+  //reusable function for deleting the item
+  const deleteItem = (key, index) => {
+    setFormData(prevFormData => ({...prevFormData, [key]: prevFormData[key].filter((_, i) => i !== index)}))
+  }
+
   const addQualification = (e) => {
     e.preventDefault();
 
@@ -69,6 +74,12 @@ const ProfileSettings = () => {
   const handleQualificationChange = (event, index) => {
     handleReusableInputChangeFunc("qualifications", index, event);
   };
+
+  const deleteQualification = (e, index) => {
+    e.preventDefault();
+
+    deleteItem('qualifications', index)
+  }
 
   return (
     <div>
@@ -221,7 +232,7 @@ const ProfileSettings = () => {
                   </div>
                 </div>
 
-                <button className="bg-red-600 p-2 rounded-full text-white text-[18px] mt-2 mb-[30px] cursor-pointer">
+                <button onClick={e => deleteQualification(e, index)} className="bg-red-600 p-2 rounded-full text-white text-[18px] mt-2 mb-[30px] cursor-pointer">
                   <AiOutlineDelete />
                 </button>
               </div>
