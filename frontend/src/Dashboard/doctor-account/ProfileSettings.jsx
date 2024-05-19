@@ -11,7 +11,7 @@ const ProfileSettings = () => {
     ticketPrice: 0,
     qualifications: [],
     experiences: [],
-    timeSlots: [{ day: "", startingTime: "", endingTime: "" }],
+    timeSlots: [],
     about: "",
     photo: null,
   });
@@ -99,6 +99,26 @@ const ProfileSettings = () => {
     e.preventDefault();
 
     deleteItem("experiences", index);
+  };
+
+  const addTimeSlot = (e) => {
+    e.preventDefault();
+
+    addItem("timeSlots", {
+      day: "Sunday",
+      startingTime: "10:00",
+      endingTime: "04:30",
+    });
+  };
+
+  const handleTimeSlotChange = (event, index) => {
+    handleReusableInputChangeFunc("timeSlots", index, event);
+  };
+
+  const deleteTimeSlot = (e, index) => {
+    e.preventDefault();
+
+    deleteItem("timeSlots", index);
   };
 
   return (
@@ -352,6 +372,7 @@ const ProfileSettings = () => {
                       name="day"
                       value={item.day}
                       className="form__input py-3.5"
+                      onChange={(e) => handleTimeSlotChange(e, index)}
                     >
                       <option value="">Select</option>
                       <option value="saturday">Saturday</option>
@@ -371,6 +392,7 @@ const ProfileSettings = () => {
                       name="startingTime"
                       value={item.startingTime}
                       className="form__input"
+                      onChange={(e) => handleTimeSlotChange(e, index)}
                     />
                   </div>
                   <div>
@@ -380,9 +402,13 @@ const ProfileSettings = () => {
                       name="endingTime"
                       value={item.endingTime}
                       className="form__input"
+                      onChange={(e) => handleTimeSlotChange(e, index)}
                     />
                   </div>
-                  <div className="flex items-center">
+                  <div
+                    onClick={(e) => deleteTimeSlot(e, index)}
+                    className="flex items-center"
+                  >
                     <button className="bg-red-600 p-2 rounded-full text-white text-[18px] cursor-pointer mt-6">
                       <AiOutlineDelete />
                     </button>
@@ -392,7 +418,10 @@ const ProfileSettings = () => {
             </div>
           ))}
 
-          <button className="bg-[#000] py-2 px-5 rounded text-white h-fit cursor-pointer">
+          <button
+            onClick={addTimeSlot}
+            className="bg-[#000] py-2 px-5 rounded text-white h-fit cursor-pointer"
+          >
             Add TimeSlot
           </button>
         </div>
