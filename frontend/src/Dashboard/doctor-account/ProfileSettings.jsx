@@ -184,9 +184,6 @@ const ProfileSettings = () => {
             onChange={handleInputChange}
             placeholder="Email"
             className="form__input"
-            readOnly
-            aria-readonly
-            disabled={true}
           />
         </div>
         <div className="mb-5">
