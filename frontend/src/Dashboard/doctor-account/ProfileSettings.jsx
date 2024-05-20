@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
 import { BASE_URL, token } from "../../config";
 import { toast } from "react-toastify";
@@ -11,7 +11,7 @@ const ProfileSettings = () => {
   );
 
   const [formData, setFormData] = useState({
-    name: "IBIKORANEZA Dieudonne",
+    name: "",
     email: "",
     password: "",
     phone: "",
@@ -24,6 +24,23 @@ const ProfileSettings = () => {
     about: "",
     photo: null,
   });
+
+  useEffect(() => {
+    setFormData({
+      name: data?.name,
+      email: data?.email,
+      password: data?.password,
+      phone: data?.phone,
+      gender: data?.gender,
+      specialization: data?.specialization,
+      ticketPrice: data?.ticketPrice,
+      qualifications: data?.qualifications,
+      experiences: data?.experiences,
+      timeSlots: data?.timeSlots,
+      about: data?.about,
+      photo: data?.photo,
+    });
+  }, [data]);
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
