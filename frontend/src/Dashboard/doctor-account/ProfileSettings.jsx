@@ -1,10 +1,19 @@
 import { useState } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
+import { BASE_URL, token } from "../../config";
+import { toast } from "react-toastify";
+import uploadImageToCloudinary from "../../utils/uploadCloudinary";
+import useGetProfile from "../../hooks/useFetchData";
 
 const ProfileSettings = () => {
-  const [FormData, setFormData] = useState({
-    name: "",
+  const { data, loading, error } = useGetProfile(
+    `${BASE_URL}/doctors/profile/me`
+  );
+
+  const [formData, setFormData] = useState({
+    name: "IBIKORANEZA Dieudonne",
     email: "",
+    password: "",
     phone: "",
     gender: "",
     specialization: "",
@@ -17,13 +26,40 @@ const ProfileSettings = () => {
   });
 
   const handleInputChange = (e) => {
-    setFormData({ ...FormData, [e.target.name]: e.target.value });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleFileInputChange = () => {};
+  const handleFileInputChange = async (event) => {
+    const file = event.target.files[0];
+
+    const data = await uploadImageToCloudinary(file);
+
+    setFormData({ ...formData, photo: data?.url });
+  };
 
   const updateProfileHandler = async (e) => {
     e.preventDefault();
+
+    try {
+      const res = await fetch(`${BASE_URL}/doctors/${data._id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await res.json();
+
+      if (!res.ok) {
+        throw Error(result.message);
+      }
+
+      toast.success(result.message);
+    } catch (err) {
+      toast.error(err.message);
+    }
   };
 
   //reusable function for adding item
@@ -133,7 +169,7 @@ const ProfileSettings = () => {
           <input
             type="text"
             name="name"
-            value={FormData.name}
+            value={formData.name}
             onChange={handleInputChange}
             placeholder="Full Names"
             className="form__input"
@@ -144,7 +180,7 @@ const ProfileSettings = () => {
           <input
             type="email"
             name="email"
-            value={FormData.email}
+            value={formData.email}
             onChange={handleInputChange}
             placeholder="Email"
             className="form__input"
@@ -154,11 +190,22 @@ const ProfileSettings = () => {
           />
         </div>
         <div className="mb-5">
+          <p className="form__label">Password*</p>
+          <input
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleInputChange}
+            placeholder="Password"
+            className="form__input"
+          />
+        </div>
+        <div className="mb-5">
           <p className="form__label">Phone*</p>
           <input
             type="number"
             name="phone"
-            value={FormData.phone}
+            value={formData.phone}
             onChange={handleInputChange}
             placeholder="Phone number"
             className="form__input"
@@ -169,7 +216,7 @@ const ProfileSettings = () => {
           <input
             type="text"
             name="bio"
-            value={FormData.bio}
+            value={formData.bio}
             onChange={handleInputChange}
             placeholder="Bio"
             className="form__input"
@@ -182,7 +229,7 @@ const ProfileSettings = () => {
               <p className="form__label">Gender*</p>
               <select
                 name="gender"
-                value={FormData.gender}
+                value={formData.gender}
                 onChange={handleInputChange}
                 className="form__input py-3.5"
               >
@@ -196,7 +243,7 @@ const ProfileSettings = () => {
               <p className="form__label">Specialization*</p>
               <select
                 name="specialization"
-                value={FormData.specialization}
+                value={formData.specialization}
                 onChange={handleInputChange}
                 className="form__input py-3.5"
               >
@@ -213,7 +260,7 @@ const ProfileSettings = () => {
                 type="number"
                 name="ticketPrice"
                 placeholder="100"
-                value={FormData.ticketPrice}
+                value={formData.ticketPrice}
                 onChange={handleInputChange}
                 className="form__input"
               />
@@ -222,7 +269,7 @@ const ProfileSettings = () => {
         </div>
         <div className="mb-5">
           <p className="form__label">Qualifications*</p>
-          {FormData.qualifications?.map((item, index) => (
+          {formData.qualifications?.map((item, index) => (
             <div key={index}>
               <div>
                 <div className="grid grid-cols-2 gap-5">
@@ -292,7 +339,7 @@ const ProfileSettings = () => {
 
         <div className="mb-5">
           <p className="form__label">Experiences*</p>
-          {FormData.experiences?.map((item, index) => (
+          {formData.experiences?.map((item, index) => (
             <div key={index}>
               <div>
                 <div className="grid grid-cols-2 gap-5">
@@ -362,7 +409,7 @@ const ProfileSettings = () => {
 
         <div className="mb-5">
           <p className="form__label">Time Slots*</p>
-          {FormData.timeSlots?.map((item, index) => (
+          {formData.timeSlots?.map((item, index) => (
             <div key={index}>
               <div>
                 <div className="grid grid-cols-2 md:grid-cols-4 mb-[30px] gap-5">
@@ -431,19 +478,19 @@ const ProfileSettings = () => {
           <textarea
             name="about"
             rows={5}
-            value={FormData.about}
+            value={formData.about}
             placeholder="Write about you"
             onChange={handleInputChange}
             className="form__input"
           ></textarea>
         </div>
 
-        <div className="mb-5 items-center gap-3">
-          {FormData.photo && (
+        <div className="mb-5 items-center flex gap-3">
+          {formData.photo && (
             <figure className="w-[60px] h-[60px] rounded-full border-2 border-solid border-primaryColor flex items-center justify-center">
               <img
-                src={FormData.photo}
-                className="w-full rounded-full"
+                src={formData.photo}
+                className="w-full rounded-full h-full"
                 alt=""
               />
             </figure>

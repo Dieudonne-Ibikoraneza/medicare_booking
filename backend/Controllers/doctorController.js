@@ -1,5 +1,6 @@
 import Booking from "../models/BookingSchema.js";
 import Doctor from "../models/DoctorSchema.js";
+
 export const updateDoctor = async (req, res) => {
   const id = req.params.id;
 

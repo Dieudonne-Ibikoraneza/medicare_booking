@@ -9,14 +9,11 @@ const DoctorAbout = ({ name, about, qualifications, experiences }) => {
         <h3 className="text-[20px] leading-[30px]  text-headingColor font-semibold flex items-center gap-2">
           About of
           <span className="text-irisBlueColor font-bold text-[24px] leading-9">
-            Muhibur Rahman
+            {name}
           </span>
         </h3>
         <p className="text__para">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur
-          culpa, veritatis necessitatibus numquam voluptate iusto iure sequi
-          adipisci autem beatae, aperiam debitis quam omnis itaque rem vitae,
-          officiis ducimus blanditiis.
+          {about}
         </p>
       </div>
 

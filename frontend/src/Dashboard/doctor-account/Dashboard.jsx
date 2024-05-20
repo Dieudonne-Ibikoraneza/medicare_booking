@@ -29,7 +29,7 @@ const Dashboard = () => {
               {data.isApproved === "pending" && (
                 <div className="flex p-4 text-yellow-800 bg-yellow-50 rounded-lg">
                   <svg
-                  className="flex-shrink-0 w-5 h-5"
+                    className="flex-shrink-0 w-5 h-5"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
                     fill="currentColor"
@@ -38,16 +38,18 @@ const Dashboard = () => {
                   </svg>
 
                   <span className="sr-only">Info</span>
-                  <div className="ml-3 text-sm font-medium">To get approval please complete your profile. We&apos;ll review manually and approve within 3 days.</div>
+                  <div className="ml-3 text-sm font-medium">
+                    To get approval please complete your profile. We&apos;ll
+                    review manually and approve within 3 days.
+                  </div>
                 </div>
               )}
 
               <div className="mt-8">
-                {tab === 'overview' && <Overview />}
+                {tab === "overview" && <Overview />}
 
-
-                {tab === 'appointments' && <Appointments />}
-                {tab === 'settings' && <ProfileSettings />}
+                {tab === "appointments" && <Appointments />}
+                {tab === "settings" && <ProfileSettings />}
               </div>
             </div>
           </div>
