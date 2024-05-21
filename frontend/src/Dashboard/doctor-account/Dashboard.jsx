@@ -48,7 +48,7 @@ const Dashboard = () => {
               <div className="mt-8">
                 {tab === "overview" && <Overview />}
 
-                {tab === "appointments" && <Appointments />}
+                {tab === "appointments" && <Appointments appointments={data.appointments} />}
                 {tab === "settings" && <ProfileSettings />}
               </div>
             </div>
