@@ -4,11 +4,14 @@ import { BASE_URL, token } from "../../config";
 import { toast } from "react-toastify";
 import uploadImageToCloudinary from "../../utils/uploadCloudinary";
 import useGetProfile from "../../hooks/useFetchData";
+import HashLoader from "react-spinners/HashLoader";
 
 const ProfileSettings = () => {
   const { data, loading, error } = useGetProfile(
     `${BASE_URL}/doctors/profile/me`
   );
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -23,6 +26,7 @@ const ProfileSettings = () => {
     timeSlots: [],
     about: "",
     photo: null,
+    bio: "",
   });
 
   useEffect(() => {
@@ -39,6 +43,7 @@ const ProfileSettings = () => {
       timeSlots: data?.timeSlots,
       about: data?.about,
       photo: data?.photo,
+      bio: data?.bio,
     });
   }, [data]);
 
@@ -57,6 +62,8 @@ const ProfileSettings = () => {
   const updateProfileHandler = async (e) => {
     e.preventDefault();
 
+    setIsLoading(true);
+
     try {
       const res = await fetch(`${BASE_URL}/doctors/${data._id}`, {
         method: "PUT",
@@ -72,6 +79,8 @@ const ProfileSettings = () => {
       if (!res.ok) {
         throw Error(result.message);
       }
+
+      setIsLoading(false);
 
       toast.success(result.message);
     } catch (err) {
@@ -201,6 +210,7 @@ const ProfileSettings = () => {
             onChange={handleInputChange}
             placeholder="Email"
             className="form__input"
+            disabled={true}
           />
         </div>
         <div className="mb-5">
@@ -535,7 +545,11 @@ const ProfileSettings = () => {
             onClick={updateProfileHandler}
             className="bg-primaryColor leading-[30px] text-white text-[18px] w-full py-3 px-4 rounded-lg"
           >
-            Update Profile
+            {isLoading ? (
+              <HashLoader size={35} color="#fff" />
+            ) : (
+              "Update profile"
+            )}
           </button>
         </div>
       </form>

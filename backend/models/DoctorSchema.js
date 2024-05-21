@@ -39,6 +39,7 @@ const DoctorSchema = new mongoose.Schema({
     default: "pending",
   },
   appointments: [{ type: mongoose.Types.ObjectId, ref: "Appointment" }],
+  gender: { type: String, enum: ["male", "female", "other"] },
 });
 
 export default mongoose.model("Doctor", DoctorSchema);

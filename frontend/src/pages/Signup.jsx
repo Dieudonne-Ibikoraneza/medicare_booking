@@ -7,10 +7,11 @@ import uploadImageToCloudinary from "../utils/uploadCloudinary";
 import { BASE_URL } from "../config.js";
 import { toast } from "react-toastify";
 import HashLoader from "react-spinners/HashLoader";
+import user from "../assets/images/user.png"
 
 const Signup = () => {
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [previewURL, setPreviewURL] = useState("");
+  const [selectedFile, setSelectedFile] = useState(user);
+  const [previewURL, setPreviewURL] = useState(user);
   const [loading, setLoading] = useState(false);
 
   const [formData, setFormData] = useState({
