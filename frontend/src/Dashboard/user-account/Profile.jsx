@@ -26,7 +26,7 @@ const Profile = ({ user }) => {
     setFormData({
       name: user.name,
       email: user.email,
-      password: "",
+      password: user.password,
       photo: user.photo,
       gender: user.gender,
       bloodType: user.bloodType,
