@@ -93,8 +93,17 @@ const DoctorDetails = () => {
               </div>
 
               <div className="t-[50px]">
-                {tab === "about" && <DoctorAbout />}
-                {tab === "feedback" && <FeedBack />}
+                {tab === "about" && (
+                  <DoctorAbout
+                    name={name}
+                    about={about}
+                    qualifications={qualifications}
+                    experiences={experiences}
+                  />
+                )}
+                {tab === "feedback" && (
+                  <FeedBack reviews={reviews} totalRating={totalRating} />
+                )}
               </div>
             </div>
 

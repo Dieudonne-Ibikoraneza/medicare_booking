@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { formateDate } from "../../utils/formateDate";
@@ -5,14 +6,14 @@ import avatar from "../../assets/images/avatar-icon.png";
 import { AiFillStar } from "react-icons/ai";
 import FeedbackForm from "./FeedbackForm";
 
-const FeedBack = () => {
+const FeedBack = ({ reviews, totalRating }) => {
   const [showFeedbackForm, setShowFeedbackForm] = useState(false);
 
   return (
     <div>
       <div className="mb-[50px]">
         <h4 className="text-[20px] leading-[30px] font-bold text-headingColor mb-[30px]">
-          All review (272)
+          All review ({totalRating})
         </h4>
         <div className="flex justify-between gap-10 mb-[30px]">
           <div className="flex gap-3">
