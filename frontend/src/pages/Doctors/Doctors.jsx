@@ -41,7 +41,7 @@ const Doctors = () => {
           <div className="max-w-[570px] mt-[30px] mx-auto bg-[#0066ff2c] rounded-md flex items-center justify-between">
             <input
               type="search"
-              className="py-4 pl-4 pr-2 bg-transparent focus:outline-none cursor-pointer placeholder:text-textColor"
+              className="py-4 pl-4 w-full pr-2 bg-transparent focus:outline-none cursor-pointer placeholder:text-textColor"
               placeholder="Search doctor by name or specialization"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
