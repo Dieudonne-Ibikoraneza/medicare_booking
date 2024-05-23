@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "prop-types": "^15.8.1",
-    "react-toastify": "^10.0.5"
+    "react-toastify": "^10.0.5",
+    "stripe": "^15.7.0"
   }
 }

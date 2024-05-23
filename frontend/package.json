@@ -17,6 +17,7 @@
     "react-spinners": "^0.13.8",
     "react-toastify": "^10.0.5",
     "remixicon": "^4.2.0",
+    "stripe": "^15.7.0",
     "swiper": "^11.1.1"
   },
   "devDependencies": {
